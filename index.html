@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Contact Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --accent-glow: #3b82f6;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Glassmorphic Form Container Layout */
+        .form-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-title {
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .header-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* Custom Input Styling Rules */
+        .form-label {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            background-color: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: var(--text-primary);
+            padding: 12px 16px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Remove default white flash on focus */
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(0, 0, 0, 0.45);
+            border-color: var(--accent-glow);
+            color: var(--text-primary);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+        }
+
+        /* Target specific browser autocomplete background defaults */
+        .form-control:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #0f172a inset !important;
+            -webkit-text-fill-color: var(--text-primary) !important;
+        }
+
+        /* Form Input Field Custom validation placement markers */
+        .invalid-feedback {
+            font-size: 12px;
+            color: #f87171;
+            margin-top: 5px;
+            padding-left: 4px;
+        }
+
+        /* Interactive Action Button */
+        .btn-submit {
+            height: 52px;
+            background: var(--accent-glow);
+            border: none;
+            border-radius: 14px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.15s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #2563eb;
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2 class="header-title"style="text-align:center;"</h2>Addmision form</h2>
+        <p class="header-subtitle">Drop us a line and we'll get right back to you.</p>
+
+        <form class="needs-validation" novalidate id="contactForm">
+            
+            <div class="mb-3">
+                <label for="userName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="userName" placeholder="John Doe" required>
+                <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="userEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="userEmail" placeholder="name@example.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="inquiryType" class="form-label">Subject</label>
+                <select class="form-select" id="inquiryType" required>
+                    <option value="" selected disabled hidden>Choose options...</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="development">Web Development</option>
+                    <option value="support">Technical Support</option>
+                </select>
+                <div class="invalid-feedback">Please select an option.</div>
+            </div>
+
+            <div class="mb-4">
+                <label for="userMessage" class="form-label">Message</label>
+                <textarea class="form-control" id="userMessage" rows="4" placeholder="Your message details here..." required></textarea>
+                <div class="invalid-feedback">Please write your message expression text.</div>
+            </div>
+
+            <button type="submit" class="btn btn-submit w-100">
+                <i class="bi bi-send-fill"></i> Send Message
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Native JavaScript runtime implementation for Bootstrap Form Field validations
+        (() => {
+            'use strict'
+            const form = document.getElementById('contactForm');
+
+            form.addEventListener('submit', event => {
+                // If validity parameters are unmet, lock standard pipeline execution behavior
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                } else {
+                    event.preventDefault();
+                    alert("Form verified successfully! Processing submission package data pipeline payload safely.");
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    return;
+                }
+
+                form.classList.add('was-validated');
+            }, false);
+        })();
+    </script>
+</body>
+</html>
